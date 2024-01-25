@@ -61,20 +61,11 @@ export const userLoginController = async function (req, res) {
 
 		// Generating a JWT token and setting it as a secure, httpOnly cookie
 		const token = generateToken(user._id);
-		res
-			.cookie("UserAuth", token, {
-				domain: "localhost" || process.env.SERVER_DOMAIN,
-				path: "/",
-				httpOnly: true,
-				secure: true,
-				sameSite: "none",
-			})
-			.status(200)
-			.json({
-				success: true,
-				token: token,
-				message: `${user.username} is login successfully`,
-			});
+		res.status(200).json({
+			success: true,
+			token: token,
+			message: `${user.username} is login successfully`,
+		});
 	} catch (error) {
 		// Handling any errors and responding with an error message
 		res.status(500).json({ error: error.message });
@@ -107,18 +98,10 @@ export const fetchUserDataController = async function (req, res) {
 export const logoutController = async function (req, res) {
 	try {
 		// Clearing the UserAuth cookie to log the user out
-		res
-			.clearCookie("UserAuth", {
-				domain: "localhost" || process.env.SERVER_DOMAIN,
-				path: "/",
-				httpOnly: true,
-				secure: true,
-				sameSite: "none",
-			})
-			.json({
-				success: true,
-				message: "User logout successfully",
-			});
+		res.json({
+			success: true,
+			message: "User logout successfully",
+		});
 	} catch (error) {
 		// Handling any errors and responding with an error message
 		res.status(500).json({ error: error.message });

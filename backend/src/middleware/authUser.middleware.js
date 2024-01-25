@@ -3,9 +3,8 @@ import { parse } from "cookie";
 
 export const authUser = async function (req, res, next) {
 	try {
-		// Extracting the token from the "UserAuth" cookie in the request headers
-		const cookies = parse(req.headers.cookie || "");
-		const token = cookies.UserAuth;
+		// Extracting the token from the header authorization header
+		const token = req.get("Authorization").split(" ")[1] || "";
 
 		// Checking if the token is missing
 		if (!token) {

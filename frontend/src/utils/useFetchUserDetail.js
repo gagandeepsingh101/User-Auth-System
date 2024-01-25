@@ -12,6 +12,9 @@ export const useFetchUserDetail = async (setUserData) => {
 			}/api/users/userData`,
 			{
 				withCredentials: true, // Sending credentials (cookies) with the request
+				headers: {
+					Authorization: "Bearer " + document.cookie.split("=")[1],
+				},
 			}
 		);
 
@@ -22,7 +25,7 @@ export const useFetchUserDetail = async (setUserData) => {
 		}
 	} catch (error) {
 		// Displaying an error toast in case of an error
-		console.log(error)
+		console.log(error);
 		errorToast("Error while fetching user data: " + error);
 	}
 };

@@ -21,6 +21,7 @@ export const useLogOutUser = async (setUserData, navigate, username) => {
 			successToast(data.message.replace("User", username));
 			setTimeout(() => {
 				// Resetting the user data state and navigating to the home page
+				document.cookie = "UserAuth=";
 				setUserData(null);
 				navigate("/");
 			}, 2000);
