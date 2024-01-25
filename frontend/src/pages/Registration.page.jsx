@@ -46,7 +46,9 @@ const UserRegistration = () => {
 			/>
 
 			{/* Sign Up heading */}
-			<h1 className="text-center text-4xl font-bold w-fit h-[10%]">Sign Up</h1>
+			<h1 className="text-center text-2xl font-bold w-fit h-[10%] md:text-3xl lg:text-4xl">
+				Sign Up
+			</h1>
 
 			{/* Registration form */}
 			<form
@@ -56,8 +58,8 @@ const UserRegistration = () => {
 					// Input fields for username, email, and password
 					<div
 						key={field}
-						className="flex flex-col justify-evenly w-7/12 mx-auto h-[20%]">
-						<label htmlFor={field} className="text-lg">
+						className="flex flex-col gap-1 w-9/12 justify-evenly mx-auto lg:w-7/12 lg:h-[20%]">
+						<label htmlFor={field} className="text-md lg:text-lg">
 							{field === "username"
 								? "Name"
 								: field === "email"
@@ -88,7 +90,7 @@ const UserRegistration = () => {
 				{/* Sign Up button */}
 				<button
 					type="submit"
-					className="w-3/12 flex justify-center items-center mx-auto h-[10%] my-6 bg-green-200 p-3 text-lg transition-all ease-linear duration-300 rounded-lg hover:bg-green-600 hover:text-white">
+					className=" flex justify-center items-center mx-auto h-[10%] my-6 bg-green-200 p-3 text-lg transition-all ease-linear duration-300 rounded-lg hover:bg-green-600 hover:text-white lg:p-5">
 					Sign Up
 				</button>
 			</form>
