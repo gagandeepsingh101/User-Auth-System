@@ -23,7 +23,7 @@ const UserProfile = () => {
     // useEffect to fetch user data when the component mounts
     useEffect(() => {
         // Checking if the user is logged in based on the existence of cookies
-        if (document.cookie.split("=")[1]) {
+        if (document.cookie && document.cookie.split("=")[1]) {
             // Fetching user data and updating the state
             fetchUserData(setUserData);
         } else {

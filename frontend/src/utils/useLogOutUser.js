@@ -1,7 +1,8 @@
 // Importing the Axios library for making HTTP requests and custom toast functions
 import axios from "axios";
 import { errorToast, successToast } from "./customToast";
-
+import { useSetCookie } from "./useSetCookie";
+const setCookie = useSetCookie;
 // Custom hook for handling user logout
 export const useLogOutUser = async (setUserData, navigate, username) => {
 	try {
@@ -19,9 +20,10 @@ export const useLogOutUser = async (setUserData, navigate, username) => {
 		if (data.success) {
 			// Displaying a success toast with the modified message and navigating to the home page after a delay
 			successToast(data.message.replace("User", username));
+
 			setTimeout(() => {
 				// Resetting the user data state and navigating to the home page
-				document.cookie = "UserAuth=";
+				setCookie("UserAuth", document.cookie.split(" ")[0].split("=")[1], 0);
 				setUserData(null);
 				navigate("/");
 			}, 2000);

@@ -1,8 +1,10 @@
 // Importing the Axios library for making HTTP requests and custom toast functions
 import axios from "axios";
 import { errorToast, successToast } from "./customToast";
+import { useSetCookie } from "./useSetCookie";
 
 // Custom hook for handling user login
+const setCookie = useSetCookie;
 export const useLoginUser = async (userData, navigate, setLoginUser) => {
 	try {
 		// Constructing the API URL based on the environment variable or defaulting to "http://localhost:8080"
@@ -27,7 +29,7 @@ export const useLoginUser = async (userData, navigate, setLoginUser) => {
 					email: "",
 					password: "",
 				});
-				document.cookie = `UserAuth=${data.token}`;
+				setCookie("UserAuth", data.token, 7);
 				// Navigating to the profile page
 				navigate("/profile");
 			}, 2000);
